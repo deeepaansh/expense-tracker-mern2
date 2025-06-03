@@ -19,7 +19,8 @@ export const GlobalProvider = ({ children }) => {
   // Actions
   async function getTransactions() {
     try {
-      const res = await axios.post('/api/v1/transactions');
+      // GET request to fetch all transactions
+      const res = await axios.get('/api/v1/transactions');
 
       dispatch({
         type: 'GET_TRANSACTIONS',
@@ -28,7 +29,7 @@ export const GlobalProvider = ({ children }) => {
     } catch (err) {
       dispatch({
         type: 'TRANSACTION_ERROR',
-        payload: err.response.data.error
+        payload: err.response?.data?.error || 'Failed to fetch transactions'
       });
     }
   }
@@ -44,7 +45,7 @@ export const GlobalProvider = ({ children }) => {
     } catch (err) {
       dispatch({
         type: 'TRANSACTION_ERROR',
-        payload: err.response.data.error
+        payload: err.response?.data?.error || 'Failed to delete transaction'
       });
     }
   }
@@ -52,10 +53,12 @@ export const GlobalProvider = ({ children }) => {
   async function addTransaction(transaction) {
     try {
       console.log("Sending transaction:", transaction); // Debug log
-      const res = await axios.post('http://localhost:5001/api/v1/transactions', transaction, {
-        headers: { 'Content-Type': 'application/json' },
-        withCredentials: true
+      const res = await axios.post('/api/v1/transactions', transaction, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
       });
+
       console.log("Response from backend:", res.data);  // Debug log
   
       dispatch({
@@ -72,14 +75,16 @@ export const GlobalProvider = ({ children }) => {
     }
   }
   
-  return (<GlobalContext.Provider value={{
-    transactions: state.transactions,
-    error: state.error,
-    loading: state.loading,
-    getTransactions,
-    deleteTransaction,
-    addTransaction
-  }}>
-    {children}
-  </GlobalContext.Provider>);
+  return (
+    <GlobalContext.Provider value={{
+      transactions: state.transactions,
+      error: state.error,
+      loading: state.loading,
+      getTransactions,
+      deleteTransaction,
+      addTransaction
+    }}>
+      {children}
+    </GlobalContext.Provider>
+  );
 }
