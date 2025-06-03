@@ -3,19 +3,38 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@svgr/plugin-svgo": "^8.1.0",
+    "@svgr/webpack": "^6.5.1",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
-    "axios": "^0.19.2",
+    "axios": "^1.9.0",
+    "css-select": "^4.3.0",
+    "follow-redirects": "^1.15.9",
+    "nth-check": "^2.1.1",
+    "postcss": "^8.4.31",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
-    "react-scripts": "5.0.1"
+    "react-scripts": "^5.0.1",
+    "svgo": "^3.0.2"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
+  },
+  "resolutions" : {
+    "nth-check": "2.1.1",
+    "postcss": "8.4.31",
+    "css-select": "4.3.0",
+    "svgo": "3.0.2",
+    "@svgr/webpack": "6.5.1"
+  },
+  "devDependencies": {
+    "react-scripts": "^5.0.1",
+    "@svgr/webpack": "...",
+    "resolve-url-loader": "..."
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -31,6 +50,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+    
   },
-  "proxy": "http://localhost:5000"
+  
+  "proxy": "http://localhost:5001"
 }
+

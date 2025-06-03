@@ -24,19 +24,26 @@ exports.getTransactions = async (req, res, next) => {
 // @route   POST /api/v1/transactions
 // @access  Public
 exports.addTransaction = async (req, res, next) => {
+
+  
   try {
+    console.log("📥 Incoming POST data:", req.body); // ✅ Add this line
+
     const { text, amount } = req.body;
 
     const transaction = await Transaction.create(req.body);
-  
+
+    console.log("✅ Transaction saved:", transaction); // ✅ Add this line
+
     return res.status(201).json({
       success: true,
       data: transaction
-    }); 
+    });
   } catch (err) {
-    if(err.name === 'ValidationError') {
-      const messages = Object.values(err.errors).map(val => val.message);
+    console.error("❌ Error while adding transaction:", err); // ✅ Add this line
 
+    if (err.name === 'ValidationError') {
+      const messages = Object.values(err.errors).map(val => val.message);
       return res.status(400).json({
         success: false,
         error: messages
@@ -48,7 +55,8 @@ exports.addTransaction = async (req, res, next) => {
       });
     }
   }
-}
+};
+
 
 // @desc    Delete transaction
 // @route   DELETE /api/v1/transactions/:id
