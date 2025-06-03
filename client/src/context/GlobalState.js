@@ -52,7 +52,7 @@ export const GlobalProvider = ({ children }) => {
   async function addTransaction(transaction) {
     try {
       console.log("Sending transaction:", transaction); // Debug log
-      const res = await axios.post('/api/v1/transactions', transaction, {
+      const res = await axios.post('http://localhost:5001/api/v1/transactions', transaction, {
         headers: { 'Content-Type': 'application/json' },
         withCredentials: true
       });
