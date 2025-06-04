@@ -13,7 +13,7 @@ export const TransactionList = () => {
 
   return (
     <>
-      <h3>History</h3>
+      <h3 style={{ color: "#ffffff" }}>History</h3>
       <ul className="list">
         {transactions.map(transaction => (<Transaction key={transaction._id} transaction={transaction} />))}
       </ul>

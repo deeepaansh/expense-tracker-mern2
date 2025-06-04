@@ -11,8 +11,8 @@ export const Balance = () => {
 
   return (
     <>
-      <h4>Your Balance</h4>
-    <h1>${numberWithCommas(total)}</h1>
+      <h4 style={{ color: "#ffffff" }}>Your Balance</h4>
+    <h1 style={{ color: "#ffffff" }}>₹{numberWithCommas(total)}</h1>
     </>
   )
 }
